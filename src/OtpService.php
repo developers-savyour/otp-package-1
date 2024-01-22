@@ -283,7 +283,7 @@ class OtpService
             if($response['status'])
             {
                 // setting sending sms service class name to response
-                $this->sendingSmsServiceName = $smsService;
+                $this->sendingSmsServiceName = str_replace("Service","",$smsService);
                 break;
             }
         }
