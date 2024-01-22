@@ -39,6 +39,7 @@ class SmsAndEmailPackageServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             self::configFilePath, self::configFileName
         );
+
     }
 
 

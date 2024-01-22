@@ -130,7 +130,7 @@ class OtpService
                 'validation_attempts' => 0,
                 'is_verified'=> 0,
                 'is_expired'=> 0,
-                'generated_date' => date('Y-m-d H:i:s'),
+                'generated_at' => date('Y-m-d H:i:s'),
             ]);
 
         }
