@@ -40,3 +40,7 @@ $app->configure('config-sms-and-email-package-service');
 ```
 $app->register(\Savyour\SmsAndEmailPackage\SmsAndEmailPackageServiceProvider::class);
 ```
+
+```
+php artisan savyour-otp-package:publish-config
+```

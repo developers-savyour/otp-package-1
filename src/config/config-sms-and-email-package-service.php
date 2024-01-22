@@ -127,7 +127,8 @@ return [
             'auth_token' => env('TWILIO_AUTH_TOKEN'),
             'phone_number' => env('TWILIO_PHONE_NUMBER'),
             'verification_id' => env('TWILIO_VERIFICATION_SID'),
-            'active_mode' => env('TWILIO_ACTIVE_MODE',false)
+            'active_mode' => env('TWILIO_ACTIVE_MODE',false),
+            'testing_mode' => env('TWILIO_TESTING_MODE',false),
         ],
     ]
 ];

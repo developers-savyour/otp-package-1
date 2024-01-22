@@ -23,7 +23,6 @@ class TwilioService
     public function send($phone, $msg)
     {
 
-
         if(!$this->settings['active_mode'])
         {
             $errorData = [
@@ -38,17 +37,23 @@ class TwilioService
 
         try {
 
-            $twilio = new Client($this->settings['account_id'], ($this->settings['auth_token']));
-            $message = $twilio->messages->create($phone, // to
+            // checking testing mode is not active
+            if(!$this->settings['testing_mode'])
+            {
+                $twilio = new Client($this->settings['account_id'], ($this->settings['auth_token']));
+                $message = $twilio->messages->create($phone, // to
                     [
                         "body" => $msg,
                         "from" => $this->settings['phone_number']
                     ]
                 );
-
-//            testing payload
-//            $message = collect(json_decode('{"body":"Sent from your Twilio trial account - Your OTP for Savyour is: 27174. For queries, Call us at 03347287284","numSegments":"1","direction":"outbound-api","from":"+15093003942","to":"+923102607803","dateUpdated":"2022-10-31 15:22:34","price":null,"errorMessage":null,"uri":"/2010-04-01/Accounts/ACdc331bd894cda29a448875e1dededd27/Messages/SM4d23e8450aa20bbeb5615d4bfb87eb2d.json","accountSid":"ACdc331bd894cda29a448875e1dededd27","numMedia":"0","status":"queued","messagingServiceSid":null,"sid":"SM4d23e8450aa20bbeb5615d4bfb87eb2d","dateSent":null,"dateCreated":"2022-10-31 15:22:34","errorCode":null,"priceUnit":"USD","apiVersion":"2010-04-01","subresourceUris":{"media":"/2010-04-01/Accounts/ACdc331bd894cda29a448875e1dededd27/Messages/SM4d23e8450aa20bbeb5615d4bfb87eb2d/Media.json"}}'));
-//            $message->status = 'queued';
+            }
+            else
+            {
+                // testing payload
+                $message = collect(json_decode('{"body":"Sent from your Twilio trial account - Your OTP for Savyour is: 27174. For queries, Call us at 03347287284","numSegments":"1","direction":"outbound-api","from":"+15093003942","to":"+923102607803","dateUpdated":"2022-10-31 15:22:34","price":null,"errorMessage":null,"uri":"/2010-04-01/Accounts/ACdc331bd894cda29a448875e1dededd27/Messages/SM4d23e8450aa20bbeb5615d4bfb87eb2d.json","accountSid":"ACdc331bd894cda29a448875e1dededd27","numMedia":"0","status":"queued","messagingServiceSid":null,"sid":"SM4d23e8450aa20bbeb5615d4bfb87eb2d","dateSent":null,"dateCreated":"2022-10-31 15:22:34","errorCode":null,"priceUnit":"USD","apiVersion":"2010-04-01","subresourceUris":{"media":"/2010-04-01/Accounts/ACdc331bd894cda29a448875e1dededd27/Messages/SM4d23e8450aa20bbeb5615d4bfb87eb2d/Media.json"}}'));
+                $message->status = 'queued';
+            }
 
             $status = ($message->status == 'queued' || $message->status == 'true')? true : false;
 
