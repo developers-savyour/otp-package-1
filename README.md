@@ -24,6 +24,8 @@ php artisan vendor:publish
 'OtpService' => Savyour\SmsAndEmailPackage\OtpService::class,
 ```
 
+then use new OtpService()
+
 ## Lumen configuration
 
 ### Add this code in bootstrap/app.php
