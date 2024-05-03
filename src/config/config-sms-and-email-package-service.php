@@ -111,6 +111,7 @@ return [
             'auth_token' => env('M3TECH_AUTH'),
             'sender' => env('M3TECH_MSG_HEADER'),
             'active_mode' => env('M3TECH_ACTIVE_MODE',false),
+            'testing_mode' => env('M3TECH_SMS_TESTING_MODE',false),
         ],
         'cequens_sms_api' => [
             'auth_url' => env('CEQUENS_AUTH_URL'),
